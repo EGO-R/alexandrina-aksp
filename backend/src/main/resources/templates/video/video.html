@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${video.name}">Video name</title>
+</head>
+<body>
+<header th:insert="~{fragments :: logout}">Logout</header>
+
+    <video controls style="width: 98vw; left: 1vw">
+        <source th:src="@{/api/v1/videos/{videoId}(videoId=${video.id})}" type="video/mp4">
+    </video>
+    <h1 th:text="${video.name}">Video name</h1>
+
+    <form th:if="${!video.playlists.isEmpty()}" method="post" th:action="@{/videos/{videoId}/fromPlaylist(videoId=${video.id})}">
+        <label for="deletePlaylist">Delete from:
+            <select id="deletePlaylist" name="playlistId">
+                <option th:each="playlist : ${video.playlists}"
+                        th:text="${playlist.name}"
+                        th:value="${playlist.id}">Playlist name</option>
+            </select>
+        </label>
+        <button type="submit">Delete</button>
+    </form>
+
+    <form th:if="${!playlists.isEmpty()}" method="post" th:action="@{/videos/{videoId}/toPlaylist(videoId=${video.id})}">
+        <label for="addPlaylist">Add to:
+            <select id="addPlaylist" name="playlistId">
+                <option th:each="playlist : ${playlists}"
+                        th:text="${playlist.name}"
+                        th:value="${playlist.id}">Playlist name</option>
+            </select>
+        </label>
+        <button type="submit">Add</button>
+    </form>
+
+    <div>
+        <a th:href="@{/videos/{videoId}/edit(videoId=${video.id})}">Edit video info</a>
+    </div>
+
+
+    <footer th:insert="~{fragments :: footer}">Footer</footer>
+</body>
+</html>

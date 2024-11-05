@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: local_auth_routes
+          uri: forward:/
+          predicates:
+            - Path=/login/**,/registration/**
+
+        # Маршруты для проксирования всех остальных запросов
+        - id: backend_service
+          uri: http://localhost:8081  # URL вашего целевого микросервиса
+          predicates:
+            - Path=/**
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/alexandrina_aksp_users}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:Egor2004}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: ${SHOW_SQL:true}
+        format_sql: ${FORMAT_SQL:true}
+        hbm2ddl:
+          auto: validate
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: ${MAX_SIZE:5GB}
+      max-request-size: ${MAX_SIZE:5GB}
+server:
+  servlet:
+    async:
+      timeout: 5m
+  tomcat:
+    connection-timeout: 300000

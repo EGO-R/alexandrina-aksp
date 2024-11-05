@@ -1,0 +1,3 @@
+rootProject.name = 'alexandrina-aksp'
+
+include 'gateway', 'backend'

@@ -1,0 +1,6 @@
+ext {
+    versions = [
+            'queryDslVersion': '5.0.0:jakarta',
+            'jakarta': '3.1.0'
+    ]
+}

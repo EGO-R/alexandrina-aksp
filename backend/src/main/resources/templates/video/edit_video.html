@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|Edit ${video.name}|">Edit</title>
+</head>
+<body>
+<header th:insert="~{fragments :: logout}">Logout</header>
+
+    <h1 th:text="|Editting ${video.name}:|">Video name</h1>
+
+    <form th:action="@{/videos/{videoId}/update(videoId=${video.id})}" method="post">
+        <label for="name">Name:
+            <input id="name" type="text" name="name" th:value="${video.name}">
+        </label><br>
+        <button type="submit">Update</button>
+    </form>
+
+    <form th:action="@{/videos/{videoId}/delete(videoId=${video.id})}" method="post">
+        <button type="submit">Delete</button>
+    </form>
+
+
+    <footer th:insert="~{fragments :: footer}">Footer</footer>
+</body>
+</html>

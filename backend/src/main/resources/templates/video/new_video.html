@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New video</title>
+</head>
+<body>
+<header th:insert="~{fragments :: logout}">Logout</header>
+
+    <h1>New video</h1>
+
+    <form method="post" th:action="@{/videos/create}" enctype="multipart/form-data">
+        <label for="video">Video:
+            <input id="video" type="file" accept="video/mp4" name="video">
+        </label><br>
+        <label for="name">Name:
+            <input id="name" type="text" name="name">
+        </label><br>
+        <button type="submit">Create</button>
+    </form>
+
+
+    <footer th:insert="~{fragments :: footer}">Footer</footer>
+</body>
+</html>
