@@ -59,6 +59,8 @@ subprojects {
                     implementation 'org.springframework.boot:spring-boot-starter-security'
 //                    implementation "org.springframework.cloud:spring-cloud-starter-gateway:${versions.cloud}"
                     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+//                    implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+                    implementation 'org.apache.httpcomponents.client5:httpclient5'
                 }
             } else if (project.name == 'backend') {
                 dependencies {

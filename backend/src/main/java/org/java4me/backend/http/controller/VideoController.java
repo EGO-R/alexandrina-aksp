@@ -53,7 +53,7 @@ public class VideoController {
     }
 
     @PostMapping("/create")
-    public String create(@Validated({Default.class, CreateAction.class}) VideoCreateEditDto video) {
+    public String create(@ModelAttribute @Validated({Default.class, CreateAction.class}) VideoCreateEditDto video) {
         return "redirect:/videos/" + videoService.create(video).getId();
     }
 

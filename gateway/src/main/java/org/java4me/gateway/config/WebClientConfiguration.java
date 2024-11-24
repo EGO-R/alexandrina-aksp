@@ -16,7 +16,9 @@ public class WebClientConfiguration {
     public WebClient webClient() {
         var httpClient = HttpClient.create()
                 .responseTimeout(Duration.ofMinutes(5)) // Таймаут ожидания ответа
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 300000); // Таймаут подключения
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 300000) // Таймаут подключения
+                .followRedirect(false);
+
 
         return WebClient.builder()
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
