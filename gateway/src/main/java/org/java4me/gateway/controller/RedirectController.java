@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
 
@@ -27,7 +26,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class RedirectController {
 
-    private final WebClient webClient;
     private final RestTemplate restTemplate;
     private final HttpClientService httpClientService;
 
@@ -64,19 +62,6 @@ public class RedirectController {
                 multipartData,
                 ParameterizedTypeReference.forType(String.class),
                 request);
-
-//        // Отправляем POST-запрос на второй микросервис
-//        return webClient.post()
-//                .uri(TARGET_BASE_URL + "/videos/create")
-//                .contentType(MediaType.MULTIPART_FORM_DATA)
-//                .body(BodyInserters.fromMultipartData(multipartData))
-//                .retrieve()
-//                .toEntity(String.class);
-//        return sendRequest(HttpMethod.POST,
-//                TARGET_BASE_URL + "/videos/create",
-//                headers,
-//                multipartRequest,
-//                ParameterizedTypeReference.forType(String.class));
     }
 
 
@@ -120,5 +105,4 @@ public class RedirectController {
                 typeReference
         );
     }
-
 }
